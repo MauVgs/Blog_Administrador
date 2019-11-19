@@ -1,0 +1,24 @@
+@import "components/mixings";
+@import "components/body";
+@import "components/title";
+
+
+.divBtn{
+    @include divBtn;
+}
+
+.btnBlog{
+    @include btnBlog;
+}
+
+.imgHome{
+    @include imgHome;
+}
+
+.logOut{
+    @include logOut;
+}
+
+.back{
+    @include back;
+}

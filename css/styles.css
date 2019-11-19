@@ -1,0 +1,121 @@
+.main {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  background: #5C769F;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainAdmin {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  background: #5C769F;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.formulario {
+  width: 400px;
+}
+
+button {
+  width: 300px;
+  border-radius: 50px;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.txtOut {
+  text-align: center;
+}
+
+.formulario {
+  width: 600px;
+}
+
+form {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.col {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 2px;
+}
+
+.colFecha {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.colBtn {
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.divBtn {
+  text-align: center;
+}
+
+.btnBlog {
+  width: 300px;
+  height: 72px;
+  background: #95BBDB;
+  border: 0;
+  border-radius: 50px;
+  box-shadow: 0px 5px 10px #414141;
+  font-family: monospace;
+  font-size: 25px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 4%;
+}
+.btnBlog:hover {
+  background: #fff;
+  color: #95BBDB;
+}
+
+.imgHome {
+  text-align: center;
+  width: 300px;
+}
+
+.logOut {
+  width: 50px;
+  height: auto;
+  position: relative;
+  top: 45%;
+  right: 1%;
+  cursor: pointer;
+}
+.logOut:hover {
+  color: #220a0a;
+  width: 51px;
+}
+
+.back {
+  text-decoration: none;
+  font-size: 30px;
+  color: #95BBDB;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=styles.css.map */
