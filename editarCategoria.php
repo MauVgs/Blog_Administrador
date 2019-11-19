@@ -9,30 +9,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
 </head>
 <body>
+    <header>
+        <div class="navBarHome">
+            <div>
+                <a href="/index.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
+            </div>
+            <div class="divBack">
+                <a href="/menuAdminCategorias.php" ><label class="back">Volver</label></a>
+            </div>
+        </div>
+    </header>   
     <main class="main">
         <div class="formulario">
             <form action="" method="POST">
-                <div class="field has-text-centered">
-                    <img src="/public/img/logo.png" alt="">
-                </div>
                 <div class="title has-text-centered">
-                    <h1>Bienvenido</h1>
+                    <h1>Editar Categoría:</h1>
                 </div>
                 <div class="field">
-                    <label for="user" class="label">Usuario:</label>
+                    <label for="user" class="label">Nombre:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Usuario">
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="password" class="label">Contraseña:</label>
-                    <div class="control">
-                        <input type="texpasswordt" class="input" placeholder="Contraseña">
+                        <input type="text" class="input" placeholder="Categoría">
                     </div>
                 </div>
                 <div class="field">
                     <div class="divBtn level-item has-text-centered">
-                        <a href="/menuAdminNotas.php"><button class="btnBlog" type="button">Entrar</button></a>
+                        <a href="/menuAdminNotas.php"><button class="btnBlog" type="button">Actualizar</button></a>
                     </div>
                 </div>
             </form>

@@ -3,6 +3,18 @@
 @import "components/title";
 
 
+.divBack{
+    margin-right: 2%;
+}
+.navBarHome{
+    @include navBarHome;
+}
+.navBar {
+    @include navBar;
+}
+.logo{
+    @include logo;
+}
 .divBtn{
     @include divBtn;
 }
@@ -10,15 +22,92 @@
 .btnBlog{
     @include btnBlog;
 }
-
-.imgHome{
-    @include imgHome;
+.opCategory{
+    @include opCategory;
 }
-
-.logOut{
-    @include logOut;
-}
-
 .back{
     @include back;
+}
+.articulo{
+    @include articulo;
+}
+.sidebar{
+    @include sidebar;
+}
+.introDetArtic{
+    @include introDetArtic;
+}
+.contDetArtic{
+    @include contDetArtic;
+}
+a{
+    text-decoration: none;
+}
+.divInfo{
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+}
+.divTabla{
+    width: 70%;
+    height: auto;
+    padding: 10px;
+}
+.botones{
+    width: 30%;
+    height: auto;
+    padding: 70px 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.colorIconDel{
+    color: rgb(254, 47, 47);
+}
+.posArticulo{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.ml{
+    margin-right: 80px;
+}
+.pt{
+    padding-top: 100px
+}
+.commentDetArtic{
+    width: 100%;
+    background: burlywood;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.areaComentario{
+    border-radius: 10px;
+    padding: 10px;
+    background:  rgb(225, 195, 156);
+}
+.comentario{
+    max-width: 500px;
+    text-align: left;
+}
+
+.btnAdmin{
+    width: 200px;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    background: #95BBDB;
+    border: 0;
+    box-shadow: 5px 6px 15px 0 rgba(0,0,0,0.14);
+    font-family: montserrat, sans-serif;
+    color: #fff;
+    font-size: 16px;
+    &:hover{
+        background: #fff;
+        color: #95BBDB;
+    }
 }

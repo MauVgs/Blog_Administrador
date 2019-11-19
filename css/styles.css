@@ -1,74 +1,79 @@
+body {
+  background: #5C769F;
+}
+
 .main {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
   background: #5C769F;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.mainAdmin {
+.mainMenu {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  background: #5C769F;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
 }
 
-.formulario {
+.flex {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #fff;
+  margin-top: 100px;
+}
+
+.imgHome {
+  margin-top: 2%;
+}
+
+.category {
   width: 400px;
 }
 
-button {
-  width: 300px;
-  border-radius: 50px;
+.divBack {
+  margin-right: 2%;
 }
 
-.btns {
+.navBarHome {
+  background: #fff;
+  width: 100%;
+  height: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+  position: fixed;
+  z-index: 1;
 }
 
-.txtOut {
-  text-align: center;
-}
-
-.formulario {
-  width: 600px;
-}
-
-form {
+.navBar {
+  background: #fff;
   width: 100%;
-}
-
-.row {
+  height: auto;
   display: flex;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+  position: fixed;
+  z-index: 1;
 }
 
-.col {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 2px;
-}
-
-.colFecha {
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.colBtn {
-  margin-top: 10px;
-  width: 100%;
-  box-sizing: border-box;
+.logo {
+  width: 90px;
+  height: auto;
+  margin-left: 70px;
 }
 
 .divBtn {
@@ -77,11 +82,11 @@ form {
 
 .btnBlog {
   width: 300px;
-  height: 72px;
+  height: 50px;
   background: #95BBDB;
   border: 0;
   border-radius: 50px;
-  box-shadow: 0px 5px 10px #414141;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
   font-family: monospace;
   font-size: 25px;
   color: #fff;
@@ -93,29 +98,145 @@ form {
   color: #95BBDB;
 }
 
-.imgHome {
-  text-align: center;
-  width: 300px;
-}
-
-.logOut {
-  width: 50px;
-  height: auto;
-  position: relative;
-  top: 45%;
-  right: 1%;
+.opCategory {
+  width: 100%;
+  height: 75px;
+  background: #fff;
+  color: #95BBDB;
+  font-size: 25px;
+  font-family: monospace;
+  border-radius: 50px;
+  border: 0;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
   cursor: pointer;
 }
-.logOut:hover {
-  color: #220a0a;
-  width: 51px;
+.opCategory:hover {
+  background: #95BBDB;
+  color: #fff;
 }
 
 .back {
   text-decoration: none;
   font-size: 30px;
-  color: #95BBDB;
+  color: #5C769F;
   cursor: pointer;
+}
+
+.articulo {
+  width: 25%;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  border: 0.5px solid #CECECE;
+  margin: 20px 50px;
+  background: #FFFFFF;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+}
+
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  background: #fff;
+  padding: 10px;
+}
+
+.introDetArtic {
+  margin: 10px;
+  max-width: 400px;
+  font-family: montserrat, sans-serif;
+  font-style: normal;
+  font-size: 1.2rem;
+}
+
+.contDetArtic {
+  font-family: montserrat, sans-serif;
+  margin: 10px;
+  max-width: 700px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.divInfo {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+}
+
+.divTabla {
+  width: 70%;
+  height: auto;
+  padding: 10px;
+}
+
+.botones {
+  width: 30%;
+  height: auto;
+  padding: 70px 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.colorIconDel {
+  color: #fe2f2f;
+}
+
+.posArticulo {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.ml {
+  margin-right: 80px;
+}
+
+.pt {
+  padding-top: 100px;
+}
+
+.commentDetArtic {
+  width: 100%;
+  background: burlywood;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.areaComentario {
+  border-radius: 10px;
+  padding: 10px;
+  background: #e1c39c;
+}
+
+.comentario {
+  max-width: 500px;
+  text-align: left;
+}
+
+.btnAdmin {
+  width: 200px;
+  padding: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  background: #95BBDB;
+  border: 0;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+  font-family: montserrat, sans-serif;
+  color: #fff;
+  font-size: 16px;
+}
+.btnAdmin:hover {
+  background: #fff;
+  color: #95BBDB;
 }
 
 /*# sourceMappingURL=styles.css.map */
