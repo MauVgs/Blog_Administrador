@@ -1,5 +1,6 @@
-<?php 
-    $_SESSION['usuario'] = '';
-    session_abort();
+<?php
+    session_start();
+    session_destroy();
+    
     header('Location: index.php')
 ?>
