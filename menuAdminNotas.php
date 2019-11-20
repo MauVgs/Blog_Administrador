@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+
+    $validaUsr = $_SESSION['usuario'];
+    if($validaUsr == null || $validaUsr == ''){
+        echo 'Acceso denegado';
+        die();
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +27,14 @@
                 <a href="/index.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
             </div>
             <div class="divBack">
-                <a href="/index.php" ><label class="back">Cerrar sesión</label></a>
+                <a href="/cerrarsesion.php" ><label class="back">Cerrar sesión</label></a>
             </div>
         </div>
     </header>
     
     <main class="mainMenu">
         <aside class="menu pt sidebar">
+            <p class="menu-label"><?php echo 'Bienvenido ' . $_SESSION['usuario']; ?></p>
             <p class="menu-label">General</p>
             <ul class="menu-list">
                 <li>
@@ -52,20 +64,27 @@
                             <th>Contenido</th>
                             <th>Autor</th>
                             <th>Fecha</th>
-                            <th>Eliminar</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                        <tr>
+                            <td>1</td>
+                            <td>Flutter</td>
+                            <td>Fluter is...</td>
+                            <td>Img.png</td>
+                            <td>Mobile</td>
+                            <td>La nueva plataforma FLutter...</td>
+                            <td>Mauricio Vargas</td>
+                            <td>Fecha 6 de Diciembre del 19995</td>
+                            <td><a href=""><i class="material-icons iconEdit">border_color</i></a><a href=""><i class="material-icons iconDel">delete</i></a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             <div class="botones">
                 <div>
-                    <a href="/agregarNota.php"><button class="btnAdmin">Agregar</button></a>
-                </div>
-                <div>
-                    <a href="/editarNota.php"><button class="btnAdmin">Editar</button></a>
+                    <a href="/agregarNota.php"><button class="btnAdmin">Nueva</button></a>
                 </div>
             </div>
         </div>

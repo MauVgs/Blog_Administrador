@@ -247,4 +247,14 @@ a {
   color: #95BBDB;
 }
 
+.iconEdit {
+  color: #cece2a;
+  padding-left: 5px;
+}
+
+.iconDel {
+  color: #ce0101;
+  padding-left: 10px;
+}
+
 /*# sourceMappingURL=styles.css.map */
