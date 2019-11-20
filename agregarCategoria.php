@@ -28,7 +28,7 @@
                 <div class="field">
                     <label for="user" class="label">Nombre:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Categoría">
+                        <input type="text" class="input" placeholder="Categoría" maxlength="250">
                     </div>
                 </div>
                 <div class="field">

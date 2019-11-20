@@ -43,6 +43,9 @@
 a{
     text-decoration: none;
 }
+.select, select{
+    width: 100%;
+}
 .divInfo{
     margin-top: 100px;
     width: 100%;
@@ -94,7 +97,9 @@ a{
     max-width: 500px;
     text-align: left;
 }
-
+.formulario{
+    margin-top: 30px;
+}
 .btnAdmin{
     width: 200px;
     padding: 10px;

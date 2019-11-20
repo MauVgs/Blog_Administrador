@@ -28,19 +28,19 @@
                 <div class="field">
                     <label for="user" class="label">Titulo:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Titulo">
+                        <input type="text" class="input" placeholder="Titulo" maxlength="250">
                     </div>
                 </div>
                 <div class="field">
                     <label for="password" class="label">Introducción:</label>
                     <div class="control">
-                        <input type="password" class="input" placeholder="Introducción">
+                    <textarea class="textarea" name="" id="" placeholder="Introducción" maxlength="250"></textarea>
                     </div>
                 </div>
                 <div class="field">
                     <label for="user" class="label">Imagen:</label>
                     <div class="control">
-                        <input type="file" class="input" placeholder="Usuario">
+                        <input type="file" class="input" placeholder="Usuario" maxlength="250">
                     </div>
                 </div>
                 <div class="field">
@@ -56,13 +56,13 @@
                 <div class="field">
                     <label for="user" class="label">Contenido:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Contenido">
+                    <textarea class="textarea" name="" id="" placeholder="Contenido"></textarea>
                     </div>
                 </div>
                 <div class="field">
                     <label for="user" class="label">Autor:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Autor">
+                        <input type="text" class="input" placeholder="Autor" maxlength="250">
                     </div>
                 </div>
                 <div class="field">

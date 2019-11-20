@@ -47,7 +47,7 @@ body {
 }
 
 .navBarHome {
-  background: #fff;
+  background: #F4F4F4;
   width: 100%;
   height: auto;
   display: flex;
@@ -161,6 +161,10 @@ a {
   text-decoration: none;
 }
 
+.select, select {
+  width: 100%;
+}
+
 .divInfo {
   margin-top: 100px;
   width: 100%;
@@ -220,6 +224,10 @@ a {
 .comentario {
   max-width: 500px;
   text-align: left;
+}
+
+.formulario {
+  margin-top: 30px;
 }
 
 .btnAdmin {
