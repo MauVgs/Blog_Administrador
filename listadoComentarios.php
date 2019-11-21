@@ -1,21 +1,37 @@
 <?php 
     include_once 'config.php';
-    session_start();
-
-    $validaUsr = $_SESSION['usuario'];
     
+    //Comprueba la sesión
+    session_start();
+    $validaUsr = $_SESSION['usuario'];
+
     if($validaUsr == null || $validaUsr == ''){
         echo 'Acceso denegado';
         header('Location: index.php');
         die();
     }else{
-        $sql = 'SELECT * FROM categorias WHERE borrado = 0';
 
-        $res = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
+        $id = $_GET['id'];
+
+        $datos = "SELECT c.*, (SELECT titulo FROM notas WHERE id = '$id') as titulo_nota, (SELECT usuario FROM usuarios WHERE id = c.usuario_id)  FROM comentarios c WHERE nota_id = '$id'";
+        $info = $query = mysqli_fetch_all(mysqli_query($conexion, $datos));
+        //Obtiene todos los comentarios desde la DB
         
-    }
+        // $sql = "SELECT * FROM comentarios WHERE nota_id = '$id'";
+        // $res = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
 
+        // var_dump($res);
+        // //Consultamos tl título dela nota para pintarla
+        // $titulo = '';
+        // foreach($res as $item){
+        //     $titulo = $item[1];
+        // }
+        // print_r('Este es el titulo '.$titulo);
+
+        //Consultamos el usuario de quien hizo el comentario en la DB
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,13 +42,12 @@
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="navBarHome">
             <div>
-                <a href="/menuAdminCategorias.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
+                <a href="/menuAdminUsuario.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
             </div>
             <div class="divBack">
                 <a href="/cerrarsesion.php" ><label class="back">Cerrar sesión</label></a>
@@ -46,14 +61,14 @@
             <p class="menu-label">General</p>
             <ul class="menu-list">
                 <li>
-                    <a href="/menuAdminNotas.php"><i class="material-icons">dvr</i>Lista de notas</a>
+                    <a href="/menuAdminNotas.php" ><i class="material-icons">dvr</i>Lista de notas</a>
                 </li>
                 <li>
                     
-                    <a href="/menuAdminCategorias.php" class="is-active"><i class="material-icons">featured_play_list</i>Lista de categorías</a>
+                    <a href="/menuAdminCategorias.php"><i class="material-icons">featured_play_list</i>Lista de categorías</a>
                 </li>
                 <li>
-                    <a href="/menuAdminUsuario.php"><i class="material-icons">person</i>Lista de usuarios del blog</a>
+                    <a href="/menuAdminUsuario.php" class="is-active"><i class="material-icons">person</i>Lista de usuarios del blog</a>
                 </li>
             </ul>
         </aside>
@@ -61,31 +76,29 @@
         <div class="divInfo">
             <div class="divTabla">
                 <div class="title has-text-centered">
-                    <h1>Categorías:</h1>
+                    <h1>Comentarios:</h1>
                 </div>
                 <table class=" container table">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Categoría</th>
-                            <th>Acciones</th>
+                            <th>Nota</th>
+                            <th>Usuario</th>
+                            <th>Comentarios</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($res as $item): ?>
+                        <?php foreach ($info as $item): ?>
                             <tr>
                                 <td><?php echo $item[0]; ?></td>
-                                <td><?php echo $item[1]; ?></td>
-                                <td><a href="/editarCategoria.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="/eliminarCategoria.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
+                                <td><?php echo $item[4]; ?></td>
+                                <td><?php echo $item[5]; ?></td>
+                                <td><?php echo $item[3]; ?></td>
+                                <td><a href="/eliminarComentario.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="botones">
-                <div>
-                    <a href="/agregarCategoria.php"><button class="btnAdmin">Nueva</button></a>
-                </div>
             </div>
         </div>
             

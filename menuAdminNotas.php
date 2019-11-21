@@ -30,7 +30,7 @@
     <header>
         <div class="navBarHome">
             <div>
-                <a href="/index.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
+                <a href="/menuAdminNotas.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
             </div>
             <div class="divBack">
                 <a href="/cerrarsesion.php" ><label class="back">Cerrar sesión</label></a>
@@ -73,6 +73,7 @@
                             <th>Autor</th>
                             <th>Fecha</th>
                             <th>Acciones</th>
+                            <th>Detalles</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,11 +83,16 @@
                                 <td><?php echo $item[1]; ?></td>
                                 <td><?php echo $item[2]; ?></td>
                                 <td><img src="public/img/<?php echo $item[3]; ?>" alt=""></td>
-                                <td><?php echo $item[4]; ?></td>
+                                <td><?php 
+                                $sql = "SELECT nombre FROM categorias WHERE id = '$item[4]'";
+                                $resul = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
+                                echo ($resul[0][0]);
+                                ?></td>
                                 <td><?php echo $item[5]; ?></td>
                                 <td><?php echo $item[6]; ?></td>
                                 <td><?php echo $item[7]; ?></td>
                                 <td><a href="/editarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="/eliminarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
+                                <td><a href="/listadoComentarios.php?id=<?php echo $item[0]; ?>">Detalles</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

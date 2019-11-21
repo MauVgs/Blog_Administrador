@@ -45,7 +45,7 @@
     <header>
         <div class="navBarHome">
             <div>
-                <a href="/index.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
+                <a href="/menuAdminCategorias.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
             </div>
             <div class="divBack">
                 <a href="/menuAdminCategorias.php" ><label class="back">Volver</label></a>

@@ -1,6 +1,5 @@
 <?php 
     include_once 'config.php';
-
     //Comprueba la sesión
     session_start();
     $validaUsr = $_SESSION['usuario'];
@@ -18,10 +17,29 @@
         //Si el post no está vacío, guarda los valores en la DB
         if(!empty($_POST)){
 
+            $file_name = $_FILES['imagen']['name'];
+            $file_type = $_FILES['imagen']['type'];
+            $file_size = $_FILES['imagen']['size'];
+            $file_temp_loc = $_FILES['imagen']['tmp_name'];
+            $fileNameCmps = explode(".", $file_name);
+            $fileExtension = strtolower(end($fileNameCmps));
+            $newFileName = md5(time() . $file_name) . '.' . $fileExtension;
+
+            $uploadFileDir = 'public/img/';
+            $dest_path = $uploadFileDir . $newFileName;
+            if(move_uploaded_file($fileTmpPath, $dest_path))
+            {
+                $message ='File is successfully uploaded.';
+            }
+            else
+            {
+                $message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+            }
+
             //Variables para el registro en la DB traídos del DOM por POST
             $titulo = $_POST['titulo'];
             $introduccion = $_POST['introduccion'];
-            $imagen = $_POST['imagen'];
+            $imagen = $newFileName;
             $categoria = $_POST['categoria'];
             $contenido = $_POST['contenido'];
             $autor = $_POST['autor'];
@@ -71,7 +89,7 @@
     <header>
         <div class="navBarHome">
             <div>
-                <a href="/index.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
+                <a href="/menuAdminNotas.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
             </div>
             <div class="divBack">
                 <a href="/menuAdminNotas.php" ><label class="back">Volver</label></a>
@@ -81,7 +99,14 @@
     <main class="main">
         
         <div class="formulario">
-            <form action="" method="POST" onsubmit="return evaluar();">
+            <?php
+                if (isset($_SESSION['message']) && $_SESSION['message'])
+                {
+                printf('<b>%s</b>', $_SESSION['message']);
+                unset($_SESSION['message']);
+                }
+            ?>
+                <form method="POST" onsubmit="return evaluar();" enctype="multipart/form-data">
                 <div class="title has-text-centered">
                     <h1>Agrega nueva nota <?php echo $_SESSION['usuario'];  ?>:</h1>
                 </div>
