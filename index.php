@@ -1,17 +1,8 @@
 <?php 
+    include_once 'config.php';
     // require_once 'config/connection.php';
     // $obj = new DBConexion();
 
-
-    $userdb = 'mau';
-    $password = 'root';
-    $server = '127.0.0.1';
-    $dbname = 'techies_blog';
-
-
-    $conexion = mysqli_connect($server, $userdb, $password, $dbname) or die ('Upps! No se ha podido conectar al SERVER');
-
-    
     if(!empty($_POST)){
         //Obtener usuario y contraseña del DOM
         $user = $_POST['user'];
@@ -22,18 +13,19 @@
         $password = strtolower($password);
 
         //Prepara la consulta para la comprobación de los campos con los usuarios registrados en la DB
-        $sqlLogin = "SELECT * FROM admins WHERE usuario = '$user' AND contrasena = '$password'";
+        $sqlLogin = "SELECT id, usuario FROM admins WHERE usuario = '$user' AND contrasena = '$password'";
         
         //Realiza la consulta en la DB
         $res = $query = mysqli_query($conexion, $sqlLogin);
-
         $result = mysqli_fetch_all($res);
-        print_r($result);
 
         //Comprueba el resultado de la consulta para brindar acceso o denegar
         if(!empty($result)){
+            $idAdmin = $result[0][0];
+            $nombreAdmin = $result[0][1];
             session_start();
-            $_SESSION['usuario'] = $user;
+            $_SESSION['usuario'] = $nombreAdmin;
+            $_SESSION['idAdmin'] = $idAdmin;
             header('Location: menuAdminNotas.php');
             echo 'Encontrado';
         }else{

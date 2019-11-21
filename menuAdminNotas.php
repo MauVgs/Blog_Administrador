@@ -1,12 +1,18 @@
 <?php 
+    include_once 'config.php';
     session_start();
 
     $validaUsr = $_SESSION['usuario'];
+
     if($validaUsr == null || $validaUsr == ''){
         echo 'Acceso denegado';
+        header('Location: index.php');
         die();
-    }
+    }else{
+        $sql = 'SELECT * FROM notas';
 
+        $res = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +44,14 @@
             <p class="menu-label">General</p>
             <ul class="menu-list">
                 <li>
-                    <i></i>
-                    <a href="/menuAdminNotas.php" class="is-active">Listado de notas</a>
+                    <a href="/menuAdminNotas.php" class="is-active"><i class="material-icons">dvr</i>Lista de notas</a>
                 </li>
                 <li>
-                    <i></i>
-                    <a href="/menuAdminCategorias.php">Listado de categorías</a>
+                    
+                    <a href="/menuAdminCategorias.php"><i class="material-icons">featured_play_list</i>Lista de categorías</a>
+                </li>
+                <li>
+                    <a href="/menuAdminUsuario.php"><i class="material-icons">person</i>Lista de usuarios del blog</a>
                 </li>
             </ul>
         </aside>
@@ -68,17 +76,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Flutter</td>
-                            <td>Fluter is...</td>
-                            <td>Img.png</td>
-                            <td>Mobile</td>
-                            <td>La nueva plataforma FLutter...</td>
-                            <td>Mauricio Vargas</td>
-                            <td>Fecha 6 de Diciembre del 19995</td>
-                            <td><a href=""><i class="material-icons iconEdit">border_color</i></a><a href=""><i class="material-icons iconDel">delete</i></a></td>
-                        </tr>
+                        <?php foreach ($res as $item): ?>
+                            <tr>
+                                <td><?php echo $item[0]; ?></td>
+                                <td><?php echo $item[1]; ?></td>
+                                <td><?php echo $item[2]; ?></td>
+                                <td><img src="public/img/<?php echo $item[3]; ?>" alt=""></td>
+                                <td><?php echo $item[4]; ?></td>
+                                <td><?php echo $item[5]; ?></td>
+                                <td><?php echo $item[6]; ?></td>
+                                <td><?php echo $item[7]; ?></td>
+                                <td><a href="/editarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="/eliminarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -1,3 +1,36 @@
+<?php 
+    include_once 'config.php';
+
+    //Comprueba la sesión
+    session_start();
+    $validaUsr = $_SESSION['usuario'];
+
+    //Rechaza la view si no se inicia la sesión
+    if($validaUsr == null || $validaUsr == ''){
+        echo 'Acceso denegado';
+        header('Location: index.php');
+        die();
+    }else{
+        //Obtiene el id del elemento a editar
+        $id = $_GET['id'];
+
+        $sql = "SELECT * FROM categorias WHERE id = '$id'";
+        $res = mysqli_fetch_all(mysqli_query($conexion, $sql));
+    }
+
+    if(!empty($_POST)){
+        $nuevaCat = $_POST['categoria'];
+        $data = "UPDATE categorias SET nombre = '$nuevaCat' WHERE id = '$id'";
+
+        if(mysqli_query($conexion, $data)){
+            header('Location: menuAdminCategorias.php');
+        }else{
+            echo 'error';
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,12 +61,12 @@
                 <div class="field">
                     <label for="user" class="label">Nombre:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Categoría">
+                        <input type="text" class="input" value="<?php echo $res[0][1]; ?>" name="categoria">
                     </div>
                 </div>
                 <div class="field">
                     <div class="divBtn level-item has-text-centered">
-                        <a href="/menuAdminNotas.php"><button class="btnBlog" type="button">Actualizar</button></a>
+                        <button class="btnBlog" type="submit">Actualizar</button>
                     </div>
                 </div>
             </form>

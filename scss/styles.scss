@@ -98,7 +98,7 @@ a{
     text-align: left;
 }
 .formulario{
-    margin-top: 30px;
+    margin-top: 70px;
 }
 .btnAdmin{
     width: 200px;
@@ -124,4 +124,32 @@ a{
 .iconDel{
     color: rgb(206, 1, 1);
     padding-left: 10px;
+}
+.divTabla {
+    .table{
+        width: 100%;
+        box-shadow: 5px 6px 15px 0 rgba(0,0,0,0.14);
+        border-radius: 10px;
+        tbody{
+            tr{
+                td{
+                    img{
+                        max-width: 138px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.menu-list{
+    li{
+
+        a{
+            display: flex;
+            i{
+                margin-right: 10px;
+            }
+        }
+    }
 }

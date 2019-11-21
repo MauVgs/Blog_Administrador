@@ -3,19 +3,18 @@
     session_start();
 
     $validaUsr = $_SESSION['usuario'];
-    
+
     if($validaUsr == null || $validaUsr == ''){
         echo 'Acceso denegado';
         header('Location: index.php');
         die();
     }else{
-        $sql = 'SELECT * FROM categorias WHERE borrado = 0';
+        $sql = 'SELECT id, usuario, nombre, apellidos, email  FROM usuarios';
 
         $res = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
-        
     }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,6 @@
     <title>Menu</title>
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -46,14 +44,14 @@
             <p class="menu-label">General</p>
             <ul class="menu-list">
                 <li>
-                    <a href="/menuAdminNotas.php"><i class="material-icons">dvr</i>Lista de notas</a>
+                    <a href="/menuAdminNotas.php" ><i class="material-icons">dvr</i>Lista de notas</a>
                 </li>
                 <li>
                     
-                    <a href="/menuAdminCategorias.php" class="is-active"><i class="material-icons">featured_play_list</i>Lista de categorías</a>
+                    <a href="/menuAdminCategorias.php"><i class="material-icons">featured_play_list</i>Lista de categorías</a>
                 </li>
                 <li>
-                    <a href="/menuAdminUsuario.php"><i class="material-icons">person</i>Lista de usuarios del blog</a>
+                    <a href="/menuAdminUsuario.php" class="is-active"><i class="material-icons">person</i>Lista de usuarios del blog</a>
                 </li>
             </ul>
         </aside>
@@ -61,13 +59,16 @@
         <div class="divInfo">
             <div class="divTabla">
                 <div class="title has-text-centered">
-                    <h1>Categorías:</h1>
+                    <h1>Usuarios Techies Blog:</h1>
                 </div>
                 <table class=" container table">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Categoría</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Email</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -76,16 +77,14 @@
                             <tr>
                                 <td><?php echo $item[0]; ?></td>
                                 <td><?php echo $item[1]; ?></td>
-                                <td><a href="/editarCategoria.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="/eliminarCategoria.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
+                                <td><?php echo $item[2]; ?></td>
+                                <td><?php echo $item[3]; ?></td>
+                                <td><?php echo $item[4]; ?></td>
+                                <td><a href="/eliminarUsuario.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="botones">
-                <div>
-                    <a href="/agregarCategoria.php"><button class="btnAdmin">Nueva</button></a>
-                </div>
             </div>
         </div>
             

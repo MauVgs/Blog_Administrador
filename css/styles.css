@@ -71,7 +71,7 @@ body {
 }
 
 .logo {
-  width: 90px;
+  width: 60px;
   height: auto;
   margin-left: 70px;
 }
@@ -117,7 +117,7 @@ body {
 
 .back {
   text-decoration: none;
-  font-size: 30px;
+  font-size: 20px;
   color: #5C769F;
   cursor: pointer;
 }
@@ -138,7 +138,7 @@ body {
 
 .sidebar {
   width: 300px;
-  height: 100vh;
+  min-height: 100vh;
   background: #fff;
   padding: 10px;
 }
@@ -227,7 +227,7 @@ a {
 }
 
 .formulario {
-  margin-top: 30px;
+  margin-top: 70px;
 }
 
 .btnAdmin {
@@ -255,6 +255,22 @@ a {
 .iconDel {
   color: #ce0101;
   padding-left: 10px;
+}
+
+.divTabla .table {
+  width: 100%;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+}
+.divTabla .table tbody tr td img {
+  max-width: 138px;
+}
+
+.menu-list li a {
+  display: flex;
+}
+.menu-list li a i {
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */

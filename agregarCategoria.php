@@ -1,3 +1,33 @@
+<?php 
+    include_once 'config.php';
+    session_start();
+
+    $validaUsr = $_SESSION['usuario'];
+
+    if($validaUsr == null || $validaUsr == ''){
+        echo 'Acceso denegado';
+        header('Location: index.php');
+        die();
+    }else{
+        if(!empty($_POST)){
+
+            //Variable para el registro en la DB, traído del DOM por método POST
+            $categoria = $_POST['categoria'];
+
+            $sql = "INSERT INTO categorias (nombre) VALUE ('$categoria')";
+
+            if(mysqli_query($conexion, $sql)){
+                header('Location: menuAdminCategorias.php');
+            }else{
+                echo 'error';
+            }
+        }
+        
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,12 +58,12 @@
                 <div class="field">
                     <label for="user" class="label">Nombre:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Categoría" maxlength="250">
+                        <input type="text" class="input" placeholder="Categoría" maxlength="20" name="categoria" required>
                     </div>
                 </div>
                 <div class="field">
                     <div class="divBtn level-item has-text-centered">
-                        <a href="/menuAdminNotas.php"><button class="btnBlog" type="button">Guardar</button></a>
+                        <button class="btnBlog" type="submit">Guardar</button>
                     </div>
                 </div>
             </form>
