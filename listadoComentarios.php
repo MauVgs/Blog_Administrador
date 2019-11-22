@@ -1,6 +1,5 @@
 <?php 
     include_once 'config.php';
-    
     //Comprueba la sesión
     session_start();
     $validaUsr = $_SESSION['usuario'];
@@ -14,21 +13,10 @@
         $id = $_GET['id'];
 
         $datos = "SELECT c.*, (SELECT titulo FROM notas WHERE id = '$id') as titulo_nota, (SELECT usuario FROM usuarios WHERE id = c.usuario_id)  FROM comentarios c WHERE nota_id = '$id'";
-        $info = $query = mysqli_fetch_all(mysqli_query($conexion, $datos));
-        //Obtiene todos los comentarios desde la DB
         
-        // $sql = "SELECT * FROM comentarios WHERE nota_id = '$id'";
-        // $res = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
+        $info = $query = mysqli_fetch_all(mysqli_query($conexion, $datos));
+        
 
-        // var_dump($res);
-        // //Consultamos tl título dela nota para pintarla
-        // $titulo = '';
-        // foreach($res as $item){
-        //     $titulo = $item[1];
-        // }
-        // print_r('Este es el titulo '.$titulo);
-
-        //Consultamos el usuario de quien hizo el comentario en la DB
     }
 ?>
 
@@ -42,12 +30,13 @@
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/public/img/logo.png" />
 </head>
 <body>
     <header>
         <div class="navBarHome">
             <div>
-                <a href="/menuAdminUsuario.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
+                <a href="/menuAdminNotas.php"><img src="/public/img/logo.png" alt="Techies Blog" class="logo"></a>
             </div>
             <div class="divBack">
                 <a href="/cerrarsesion.php" ><label class="back">Cerrar sesión</label></a>
@@ -61,14 +50,14 @@
             <p class="menu-label">General</p>
             <ul class="menu-list">
                 <li>
-                    <a href="/menuAdminNotas.php" ><i class="material-icons">dvr</i>Lista de notas</a>
+                    <a href="/menuAdminNotas.php" class="is-active"><i class="material-icons">dvr</i>Lista de notas</a>
                 </li>
                 <li>
                     
                     <a href="/menuAdminCategorias.php"><i class="material-icons">featured_play_list</i>Lista de categorías</a>
                 </li>
                 <li>
-                    <a href="/menuAdminUsuario.php" class="is-active"><i class="material-icons">person</i>Lista de usuarios del blog</a>
+                    <a href="/menuAdminUsuario.php" ><i class="material-icons">person</i>Lista de usuarios del blog</a>
                 </li>
             </ul>
         </aside>
@@ -99,6 +88,11 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <?php if($info == null): ?>
+                    <div class="title has-text-centered">
+                        <h1>Esta nota aún no cuenta con comentarios</h1>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
             

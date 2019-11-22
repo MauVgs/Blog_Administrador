@@ -9,7 +9,7 @@
         header('Location: index.php');
         die();
     }else{
-        $sql = 'SELECT id, usuario, nombre, apellidos, email  FROM usuarios';
+        $sql = 'SELECT id, usuario, nombre, apellidos, email  FROM usuarios WHERE ban = 0';
 
         $res = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
     }
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/public/img/logo.png" />
 </head>
 <body>
     <header>
@@ -69,7 +70,7 @@
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Email</th>
-                            <th>Acciones</th>
+                            <th>Ban</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,7 +81,7 @@
                                 <td><?php echo $item[2]; ?></td>
                                 <td><?php echo $item[3]; ?></td>
                                 <td><?php echo $item[4]; ?></td>
-                                <td><a href="/eliminarUsuario.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
+                                <td><a href="/bannearUsuario.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">new_releases</i></a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

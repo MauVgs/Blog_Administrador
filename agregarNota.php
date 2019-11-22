@@ -16,7 +16,7 @@
 
         //Si el post no está vacío, guarda los valores en la DB
         if(!empty($_POST)){
-
+            
             $file_name = $_FILES['imagen']['name'];
             $file_type = $_FILES['imagen']['type'];
             $file_size = $_FILES['imagen']['size'];
@@ -27,48 +27,51 @@
 
             $uploadFileDir = 'public/img/';
             $dest_path = $uploadFileDir . $newFileName;
-            if(move_uploaded_file($fileTmpPath, $dest_path))
+            print_r($dest_path);
+            if(move_uploaded_file($file_temp_loc, $dest_path))
             {
+                echo ('Entra');
                 $message ='File is successfully uploaded.';
+                    //Variables para el registro en la DB traídos del DOM por POST
+                $titulo = $_POST['titulo'];
+                $introduccion = $_POST['introduccion'];
+                $imagen = $newFileName;
+                $categoria = $_POST['categoria'];
+                $contenido = $_POST['contenido'];
+                $autor = $_POST['autor'];
+                $fecha = $_POST['fecha'];
+                $usuario = $_SESSION['idAdmin'];
+                
+                //Obtención de id de la categoría para poder ser añadida a la DB
+                $sqlAddCat = "SELECT id FROM categorias WHERE nombre = '$categoria' ";
+                $resulCat = $queryAddCat = mysqli_fetch_all(mysqli_query($conexion, $sqlAddCat));
+                $nuevaCat = '';
+                foreach($resulCat[0] as $item){
+                    $nuevaCat = $item;
+                }
+                
+                //Prerarar sentencia para agregar la nota a la DB 
+                $sqlInsert = "INSERT INTO notas (titulo, introduccion, imagen, categoria_id, contenido, autor, fecha, usuario) VALUES ('$titulo','$introduccion','$imagen','$nuevaCat','$contenido','$autor','$fecha', '$usuario')";
+
+                //Ejecución de la sentencia y comrobación correcta de la misma
+                try {
+                    //code...
+                    if(mysqli_query($conexion, $sqlInsert) === true){
+                            header('Location: menuAdminNotas.php');
+                        }else{
+                            echo 'Error';
+                        }
+                } catch (Exception $e) {
+                    //throw $th;
+                    echo 'Error capturado: ' . $e->getMessage(), "\n";
+                }
             }
             else
             {
                 $message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
             }
 
-            //Variables para el registro en la DB traídos del DOM por POST
-            $titulo = $_POST['titulo'];
-            $introduccion = $_POST['introduccion'];
-            $imagen = $newFileName;
-            $categoria = $_POST['categoria'];
-            $contenido = $_POST['contenido'];
-            $autor = $_POST['autor'];
-            $fecha = $_POST['fecha'];
-            $usuario = $_SESSION['idAdmin'];
             
-            //Obtención de id de la categoría para poder ser añadida a la DB
-            $sqlAddCat = "SELECT id FROM categorias WHERE nombre = '$categoria' ";
-            $resulCat = $queryAddCat = mysqli_fetch_all(mysqli_query($conexion, $sqlAddCat));
-            $nuevaCat = '';
-            foreach($resulCat[0] as $item){
-                $nuevaCat = $item;
-            }
-            
-            //Prerarar sentencia para agregar la nota a la DB 
-            $sqlInsert = "INSERT INTO notas (titulo, introduccion, imagen, categoria_id, contenido, autor, fecha, usuario) VALUES ('$titulo','$introduccion','$imagen','$nuevaCat','$contenido','$autor','$fecha', '$usuario')";
-
-            //Ejecución de la sentencia y comrobación correcta de la misma
-            try {
-                //code...
-                if(mysqli_query($conexion, $sqlInsert) === true){
-                        header('Location: menuAdminNotas.php');
-                    }else{
-                        echo 'Error';
-                    }
-            } catch (Exception $e) {
-                //throw $th;
-                echo 'Error capturado: ' . $e->getMessage(), "\n";
-            }
         }//End if
     }//End else
 ?>
@@ -84,6 +87,7 @@
     <title>Techies Blob Admin</title>
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="icon" type="image/png" href="/public/img/logo.png" />
 </head>
 <body>
     <header>

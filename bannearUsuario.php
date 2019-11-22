@@ -5,10 +5,10 @@
         print_r($id);
 
         //Sentencia query que eliminará la nota
-        $sql = "DELETE FROM usuarios WHERE id = '$id'";
+        $sql = "UPDATE usuarios SET ban = 1 WHERE id = '$id'";
         $res = mysqli_query($conexion, $sql);
         if($res){
-            header('Location: menuAdminUsuarios.php');
+            header('Location: menuAdminUsuario.php');
         }else{
             echo 'Error';
         }

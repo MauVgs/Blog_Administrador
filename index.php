@@ -1,7 +1,9 @@
 <?php 
     include_once 'config.php';
-    // require_once 'config/connection.php';
-    // $obj = new DBConexion();
+
+    //Variable bandera si existe error al iniciar sesión
+    
+    $errLogIn = 0;
 
     if(!empty($_POST)){
         //Obtener usuario y contraseña del DOM
@@ -27,10 +29,8 @@
             $_SESSION['usuario'] = $nombreAdmin;
             $_SESSION['idAdmin'] = $idAdmin;
             header('Location: menuAdminNotas.php');
-            echo 'Encontrado';
         }else{
-            header('Location: index.php');
-            echo 'No encontrado';
+            $errLogIn = 1;
         }
     }    
 ?>
@@ -44,9 +44,18 @@
     <title>Techies Blob Admin</title>
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="js/main.js" type="text/javascript">
+    <link rel="icon" type="image/png" href="/public/img/logo.png" />
 </head>
 <body>
     <main class="main">
+        <?php if($errLogIn == 1): ?>
+            <div class="notification is-danger notification-fixed has-text-centered">
+                <button class="delete" onclic="<?php $errLogIn = 0; ?>" id="cerrar"></button>
+                El usuario y/o la contraseña son <strong>erróneos</strong>, favor de intentarlo
+                 nuevamente.  O <a href="index.php">Crea una cuenta</a> para poder ser parte de nuestro equipo.
+            </div>
+        <?php endif ?>
         <div class="formulario">
             <form action="" method="POST">
                 <div class="field has-text-centered">
@@ -75,5 +84,16 @@
             </form>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                $notification = $delete.parentNode;
+                $delete.addEventListener('click', () => {
+
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

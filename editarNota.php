@@ -68,6 +68,7 @@
     <title>Techies Blob Admin</title>
     <link rel="stylesheet" href="/css/styles.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="icon" type="image/png" href="/public/img/logo.png" />
 </head>
 <body>
     <header>
@@ -86,53 +87,66 @@
                 <div class="title has-text-centered">
                     <h1>Editar Nota:</h1>
                 </div>
-                <div class="field">
-                    <label for="user" class="label">Titulo:</label>
-                    <div class="control">
-                        <input type="text" name="titulo" class="input" maxlength="250" value="<?php echo $res[0][1]; ?>">
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="password" class="label">Introducción:</label>
-                    <div class="control">
-                    <textarea class="textarea" name="introduccion" id="" maxlength="250"><?php echo $res[0][2]; ?></textarea>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="user" class="label">Imagen:</label>
-                    <div class="control">
-                        <input type="file" class="input" name="imagen" maxlength="250" value="<?php echo $res[0][3]; ?>">
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="user" class="label">Categoría</label>
-                    <div class="control">
-                        <div class="select">
-                        <select name="categoria" id="">
-                            <?php foreach ($resCat as $item): ?>
-                                <option value="<?php echo $item[1]; ?>"> <?php echo $item[1]; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                <div class="divEditForm">
+                    <div class="formPart1">
+                        <div class="field">
+                            <label for="user" class="label">Titulo:</label>
+                            <div class="control">
+                                <input type="text" name="titulo" class="input" maxlength="250" value="<?php echo $res[0][1]; ?>">
+                            </div>
                         </div>
+                        <div class="field">
+                            <label for="password" class="label">Introducción:</label>
+                            <div class="control">
+                            <textarea class="textarea" name="introduccion" id="" maxlength="250"><?php echo $res[0][2]; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="user" class="label">Imagen:</label>
+
+                            <img src="public/img/<?php echo $res[0][3]; ?> " alt="">
+
+                            <div class="control">
+                                <input type="file" class="input" name="imagen" maxlength="250" value="public/img/<?php echo $res[0][3]; ?>">
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-                <div class="field">
-                    <label for="user" class="label">Contenido:</label>
-                    <div class="control">
-                    <textarea class="textarea" name="contenido" id=""><?php echo $res[0][5]; ?></textarea>
+                    <div class="formPart2">
+                        <div class="field">
+                            <label for="user" class="label">Categoría</label>
+                            <div class="control">
+                                <div class="select">
+                                <select name="categoria" id="">
+                                    <option value="" disabled>Seleccionar</option>
+                                    <?php foreach ($resCat as $item): ?>
+                                        <option value="<?php echo $item[1]; ?>"> <?php echo $item[1]; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="user" class="label">Contenido:</label>
+                            <div class="control">
+                            <textarea class="textarea" name="contenido" id=""><?php echo $res[0][5]; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="user" class="label">Autor:</label>
+                            <div class="control">
+                                <input type="text" class="input" name="autor" maxlength="250" value="<?php echo $res[0][6]; ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="user" class="label">Fecha:</label>
+                            <div class="control">
+                                <input type="date" name="fecha" class="input" value="<?php echo $res[0][7]; ?>">
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-                <div class="field">
-                    <label for="user" class="label">Autor:</label>
-                    <div class="control">
-                        <input type="text" class="input" name="autor" maxlength="250" value="<?php echo $res[0][6]; ?>">
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="user" class="label">Fecha:</label>
-                    <div class="control">
-                        <input type="date" name="fecha" class="input" value="<?php echo $res[0][7]; ?>">
-                    </div>
+
                 </div>
                 <div class="field">
                     <div class="divBtn level-item has-text-centered">

@@ -52,7 +52,7 @@ a{
     display: flex;
 }
 .divTabla{
-    width: 70%;
+    min-width: 70%;
     height: auto;
     padding: 10px;
 }
@@ -62,6 +62,7 @@ a{
     padding: 70px 10px;
     display: flex;
     justify-content: space-around;
+    z-index: 1;
 }
 .colorIconDel{
     color: rgb(254, 47, 47);
@@ -101,6 +102,7 @@ a{
     margin-top: 70px;
 }
 .btnAdmin{
+    margin-top: 30%;
     width: 200px;
     padding: 10px;
     border-radius: 50px;
@@ -111,6 +113,7 @@ a{
     font-family: montserrat, sans-serif;
     color: #fff;
     font-size: 16px;
+    z-index: 100;
     &:hover{
         background: #fff;
         color: #95BBDB;
@@ -125,12 +128,33 @@ a{
     color: rgb(206, 1, 1);
     padding-left: 10px;
 }
+.main{
+    form{
+        min-width: 500px;
+        .field{
+            img{
+                max-width: 117px;
+            }
+            .control{
+                height: auto;
+                textarea{
+
+                }
+            }
+        }
+    }
+}
 .divTabla {
-    .table{
+    table{
         width: 100%;
+        max-height: 1000px;
         box-shadow: 5px 6px 15px 0 rgba(0,0,0,0.14);
         border-radius: 10px;
+        
         tbody{
+            height: 500px;
+            overflow-y: auto;    /* Trigger vertical scroll    */
+            overflow-x: hidden;
             tr{
                 td{
                     img{
@@ -150,6 +174,40 @@ a{
             i{
                 margin-right: 10px;
             }
+        }
+    }
+}
+.alertEliminar{
+    z-index: 3;
+}
+.cursor{
+    cursor: pointer;
+    z-index: 4;
+}
+
+
+.divEditForm{
+    display: flex;
+    max-width: 800px;
+    background: #fff;
+    box-shadow: 5px 6px 15px 0 rgba(0,0,0,0.14);
+    border-radius: 5px;
+    .formPart1{
+        padding: 20px;
+        width: 50%;
+        height: auto;
+        .field{
+            width: 100%;
+        }
+    }
+    .formPart2{
+        padding: 20px;
+        width: 50%;
+        height: auto;
+        box-sizing: border-box;
+        .field{
+            width: 100%;
+            
         }
     }
 }
