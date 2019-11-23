@@ -25,23 +25,36 @@
     }
 
     if(!empty($_POST)){
+
+            $file_name = $_FILES['imagen']['name'];
+            $file_type = $_FILES['imagen']['type'];
+            $file_size = $_FILES['imagen']['size'];
+            $file_temp_loc = $_FILES['imagen']['tmp_name'];
+            $fileNameCmps = explode(".", $file_name);
+            $fileExtension = strtolower(end($fileNameCmps));
+            $newFileName = md5(time() . $file_name) . '.' . $fileExtension;
+            $uploadFileDir = 'public/img/';
+            $dest_path = $uploadFileDir . $newFileName;
+            var_dump($dest_path);
+
+            if(move_uploaded_file($file_temp_loc, $dest_path))
+            {
+
             $titulo = $_POST['titulo'];
             $introduccion = $_POST['introduccion'];
-            $imagen = $_POST['imagen'];
             $categoria = $_POST['categoria'];
             $contenido = $_POST['contenido'];
             $autor = $_POST['autor'];
             $fecha = $_POST['fecha'];
 
-            //Obtención de id de la categoría para poder ser añadida a la DB
-            $sqlAddCat = "SELECT id FROM categorias WHERE nombre = '$categoria' ";
-            $resulCat = $queryAddCat = mysqli_fetch_all(mysqli_query($conexion, $sqlAddCat));
-            $nuevaCat = '';
-            foreach($resulCat[0] as $item){
-                $nuevaCat = $item;
+            $imagenSql = "";
+            if(count($_FILES) > 0){
+                // procedimiento;
+                $imagenSql = "imagen = '{$newFileName}',";
             }
+
             //Prerarar sentencia para actualizar la nota en la DB 
-            $sqlInsert = "UPDATE notas SET titulo = '$titulo', introduccion = '$introduccion',  imagen = '$imagen', categoria_id = '$nuevaCat',  contenido = '$contenido', autor = '$autor',  fecha = '$fecha' WHERE id = '$id'";
+            $sqlInsert = "UPDATE notas SET titulo = '$titulo', introduccion = '$introduccion', {$imagenSql} categoria_id = '$categoria',  contenido = '$contenido', autor = '$autor',  fecha = '$fecha' WHERE id = '$id'";
             //Ejecución de la sentencia y comrobación correcta de la misma
             var_dump($sqlInsert);
             try {
@@ -55,6 +68,7 @@
                 //throw $th;
                 echo 'Error capturado: ' . $e->getMessage(), "\n";
             }
+        }
     }
 
 ?>
@@ -83,7 +97,7 @@
     </header>   
     <main class="main">
         <div class="formulario">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <div class="title has-text-centered">
                     <h1>Editar Nota:</h1>
                 </div>
@@ -107,7 +121,7 @@
                             <img src="public/img/<?php echo $res[0][3]; ?> " alt="">
 
                             <div class="control">
-                                <input type="file" class="input" name="imagen" maxlength="250" value="public/img/<?php echo $res[0][3]; ?>">
+                                <input type="file" class="input" name="imagen" maxlength="250" value="">
                             </div>
                         </div>
 
@@ -120,7 +134,7 @@
                                 <select name="categoria" id="">
                                     <option value="" disabled>Seleccionar</option>
                                     <?php foreach ($resCat as $item): ?>
-                                        <option value="<?php echo $item[1]; ?>"> <?php echo $item[1]; ?></option>
+                                        <option value="<?php echo $item[0]; ?>" <?php if($item[0] == $res[0][4]) echo 'selected'?>> <?php echo $item[1]; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 </div>

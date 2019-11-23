@@ -41,17 +41,10 @@
                 $autor = $_POST['autor'];
                 $fecha = $_POST['fecha'];
                 $usuario = $_SESSION['idAdmin'];
-                
-                //Obtención de id de la categoría para poder ser añadida a la DB
-                $sqlAddCat = "SELECT id FROM categorias WHERE nombre = '$categoria' ";
-                $resulCat = $queryAddCat = mysqli_fetch_all(mysqli_query($conexion, $sqlAddCat));
-                $nuevaCat = '';
-                foreach($resulCat[0] as $item){
-                    $nuevaCat = $item;
-                }
+            
                 
                 //Prerarar sentencia para agregar la nota a la DB 
-                $sqlInsert = "INSERT INTO notas (titulo, introduccion, imagen, categoria_id, contenido, autor, fecha, usuario) VALUES ('$titulo','$introduccion','$imagen','$nuevaCat','$contenido','$autor','$fecha', '$usuario')";
+                $sqlInsert = "INSERT INTO notas (titulo, introduccion, imagen, categoria_id, contenido, autor, fecha, usuario) VALUES ('$titulo','$introduccion','$imagen','$categoria','$contenido','$autor','$fecha', '$usuario')";
 
                 //Ejecución de la sentencia y comrobación correcta de la misma
                 try {
@@ -139,7 +132,7 @@
                         <select id="categoria" name="categoria" required>
                             <option value="">Seleccionar</option>
                             <?php foreach ($resCategoria as $item): ?>
-                                <option value="<?php echo $item[1]; ?>"> <?php echo $item[1]; ?></option>
+                                <option value="<?php echo $item[0]; ?>"> <?php echo $item[1]; ?></option>
                             <?php endforeach; ?>
                         </select>
                         </div>

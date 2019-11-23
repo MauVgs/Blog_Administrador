@@ -15,7 +15,7 @@
             $categoria = $_POST['categoria'];
 
             $sql = "INSERT INTO categorias (nombre) VALUE ('$categoria')";
-
+            print_r($sql);
             if(mysqli_query($conexion, $sql)){
                 header('Location: menuAdminCategorias.php');
             }else{
@@ -59,7 +59,7 @@
                 <div class="field">
                     <label for="user" class="label">Nombre:</label>
                     <div class="control">
-                        <input type="text" class="input" placeholder="Categoría" maxlength="20" name="categoria" required>
+                        <input type="text" class="input" placeholder="Categoría" maxlength="50" name="categoria" required>
                     </div>
                 </div>
                 <div class="field">

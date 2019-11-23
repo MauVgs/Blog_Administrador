@@ -46,17 +46,15 @@
                 <a href="/cerrarsesion.php" ><label class="back">Cerrar sesión</label></a>
             </div>
         </div>
-        <?php if($eliminar == 1): ?>
-            <div class="alertEliminar">
-                <div class="notification is-danger notification-fixed2 has-text-centered">
-                    <button class="delete" onclic="<?php $eliminar = 0; ?>" id="cerrar"></button>
-                    ¿Estás seguro que deseas <strong>ELIMINAR</strong>, el elemento <?php echo ($elementoEliminar); ?> de la tabla?
-                    <div class="cursor">
-                        <a href="/eliminarNota.php?id=<?php echo $elementoEliminar; ?>"> <button id="btnEliminar" class="button is-danger is-light" type="button">Confirmar</button></a>
-                    </div>
+        <div class="alertEliminar" style="display: none;">
+            <div class="notification is-danger notification-fixed2 has-text-centered">
+                <button class="delete" id="cerrar"></button>
+                ¿Estás seguro que deseas <strong>ELIMINAR</strong>, el elemento de la tabla?
+                <div class="cursor">
+                    <button id="btnEliminar" class="button is-danger is-light" type="button" onclick="sendEliminar();">Confirmar</button>
                 </div>
             </div>
-        <?php endif ?>
+        </div>
     </header>
     <main class="mainMenu">
         
@@ -113,7 +111,7 @@
                                 <td><?php echo $item[6]; ?></td>
                                 <td><?php echo $item[7]; ?></td>
                                 <!--<td><a href="/editarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="/eliminarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>-->
-                                <td><a href="/editarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="/menuAdminNotas.php?id=<?php $eliminar = 1; echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>
+                                <td><a href="/editarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="#" onclick="eliminar(<?php echo $item[0]?>)"><i class="material-icons iconDel">delete</i></a></td>
                                 <td><a href="/listadoComentarios.php?id=<?php echo $item[0]; ?>">Detalles</a></td>
                             </tr>
                         <?php endforeach; ?>
@@ -129,15 +127,29 @@
             
     </main>
     <script>
+    let idEliminar = 0;
+        const eliminar = (id) => {
+            const alertEliminar = document.getElementsByClassName('alertEliminar')[0];
+            alertEliminar.style.display = 'block';
+
+            idEliminar = id;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
                 $notification = $delete.parentNode;
                 $delete.addEventListener('click', () => {
                     
-                    $notification.parentNode.removeChild($notification);
+                    const alertEliminar = document.getElementsByClassName('alertEliminar')[0];
+                    alertEliminar.style.display = 'none';
+                    idEliminar = 0;
                 });
             });
         });
+
+        const sendEliminar = () => {
+            window.location.href = "/eliminarNota.php?id=" + idEliminar;
+        }
     </script>
 </body>
 </html>
