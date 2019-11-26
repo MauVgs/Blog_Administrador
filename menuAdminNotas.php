@@ -84,13 +84,13 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Título</th>
-                            <th>Introducción</th>
-                            <th>Imágen Principal</th>
+                            <th id="titulo">Título</th>
+                            <th id="introduccion">Introducción</th>
+                            <th id="img">Imágen</th>
                             <th>Categoría</th>
-                            <th>Contenido</th>
-                            <th>Autor</th>
-                            <th>Fecha</th>
+                            <th id="contenido">Contenido</th>
+                            <th id="author">Autor</th>
+                            <th id="fecha">Fecha</th>
                             <th>Acciones</th>
                             <th>Detalles</th>
                         </tr>
@@ -99,17 +99,17 @@
                         <?php foreach ($res as $item): ?>
                             <tr>
                                 <td><?php echo $item[0]; ?></td>
-                                <td><?php echo $item[1]; ?></td>
-                                <td><?php echo $item[2]; ?></td>
-                                <td><img src="public/img/<?php echo $item[3]; ?>" alt=""></td>
+                                <td id="titulo"><?php echo $item[1]; ?></td>
+                                <td id="introduccion"><?php echo $item[2]; ?></td>
+                                <td id="img"><img src="public/img/<?php echo $item[3]; ?>" alt=""></td>
                                 <td><?php 
                                 $sql = "SELECT nombre FROM categorias WHERE id = '$item[4]'";
                                 $resul = $query = mysqli_fetch_all(mysqli_query($conexion, $sql));
                                 echo ($resul[0][0]);
                                 ?></td>
-                                <td><?php echo $item[5]; ?></td>
-                                <td><?php echo $item[6]; ?></td>
-                                <td><?php echo $item[7]; ?></td>
+                                <td id="contenido"><?php echo $item[5]; ?></td>
+                                <td id="author"><?php echo $item[6]; ?></td>
+                                <td id="fecha"><?php echo $item[7]; ?></td>
                                 <!--<td><a href="/editarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="/eliminarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">delete</i></a></td>-->
                                 <td><a href="/editarNota.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconEdit">border_color</i></a><a href="#" onclick="eliminar(<?php echo $item[0]?>)"><i class="material-icons iconDel">delete</i></a></td>
                                 <td><a href="/listadoComentarios.php?id=<?php echo $item[0]; ?>">Detalles</a></td>

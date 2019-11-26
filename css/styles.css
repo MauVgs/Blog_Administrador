@@ -1,5 +1,13 @@
+/*      Responsive Web Design      */
 body {
-  background: #5C769F;
+  background: #EAEBEE;
+  min-height: 100vh;
+}
+@media only screen and (max-width: 375px) {
+  body {
+    background: #EAEBEE;
+    min-height: 100vh;
+  }
 }
 
 .main {
@@ -7,7 +15,7 @@ body {
   padding: 0;
   border: 0;
   box-sizing: border-box;
-  background: #5C769F;
+  background: #EAEBEE;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -19,6 +27,14 @@ body {
   height: 60px;
   top: 0%;
   position: fixed;
+}
+@media only screen and (max-width: 768px) {
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
 .notification-fixed2 {
@@ -45,6 +61,11 @@ body {
   min-height: 100vh;
   display: flex;
 }
+@media only screen and (max-width: 768px) {
+  .mainMenu {
+    display: block;
+  }
+}
 
 .flex {
   width: 80%;
@@ -66,7 +87,8 @@ body {
 }
 
 .divBack {
-  margin-right: 2%;
+  margin-left: 20%;
+  text-align: right;
 }
 
 .navBarHome {
@@ -79,6 +101,13 @@ body {
   box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
   position: fixed;
   z-index: 1;
+}
+@media only screen and (max-width: 375px) {
+  .navBarHome {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 
 .navBar {
@@ -106,7 +135,7 @@ body {
 .btnBlog {
   width: 300px;
   height: 50px;
-  background: #95BBDB;
+  background: #499fe6;
   border: 0;
   border-radius: 50px;
   box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
@@ -118,14 +147,14 @@ body {
 }
 .btnBlog:hover {
   background: #fff;
-  color: #95BBDB;
+  color: #499fe6;
 }
 
 .opCategory {
   width: 100%;
   height: 75px;
   background: #fff;
-  color: #95BBDB;
+  color: #499fe6;
   font-size: 25px;
   font-family: monospace;
   border-radius: 50px;
@@ -134,14 +163,14 @@ body {
   cursor: pointer;
 }
 .opCategory:hover {
-  background: #95BBDB;
+  background: #499fe6;
   color: #fff;
 }
 
 .back {
   text-decoration: none;
   font-size: 20px;
-  color: #5C769F;
+  color: #499fe6;
   cursor: pointer;
 }
 
@@ -164,6 +193,14 @@ body {
   min-height: 100vh;
   background: #fff;
   padding: 10px;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+}
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
 }
 
 .introDetArtic {
@@ -188,10 +225,44 @@ a {
   width: 100%;
 }
 
+#index {
+  margin-top: 0;
+}
+
 .divInfo {
   margin-top: 100px;
-  width: 100%;
-  display: flex;
+  min-width: 90%;
+}
+@media only screen and (max-width: 680px) {
+  .divInfo #img {
+    display: none;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .divInfo #titulo, .divInfo #author, .divInfo #fecha, .divInfo #nombre, .divInfo #email, .divInfo #apellidos {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .divInfo #introduccion, .divInfo #contenido {
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .divInfo {
+    display: block;
+    margin-top: 0;
+  }
+  .divInfo .divTabla table tbody tr td img {
+    max-width: 50px;
+  }
+  .divInfo table {
+    min-width: 100%;
+    margin-right: 20px;
+  }
+  .divInfo table #introduccion, .divInfo table #contenido {
+    display: none;
+  }
 }
 
 .divTabla {
@@ -201,12 +272,32 @@ a {
 }
 
 .botones {
-  width: 30%;
-  height: auto;
-  padding: 70px 10px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   z-index: 1;
+  margin-top: 20px;
+}
+.botones button {
+  width: 200px;
+  padding: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  background: #4895d5;
+  border: 0;
+  box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+  font-family: montserrat, sans-serif;
+  color: #fff;
+  font-size: 16px;
+  z-index: 100;
+}
+@media only screen and (max-width: 768px) {
+  .botones {
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+  }
 }
 
 .colorIconDel {
@@ -228,6 +319,11 @@ a {
 
 .pt {
   padding-top: 100px;
+}
+@media only screen and (max-width: 768px) {
+  .pt {
+    padding-top: 80px;
+  }
 }
 
 .commentDetArtic {
@@ -255,7 +351,6 @@ a {
 }
 
 .btnAdmin {
-  margin-top: 30%;
   width: 200px;
   padding: 10px;
   border-radius: 50px;
@@ -283,8 +378,18 @@ a {
   padding-left: 10px;
 }
 
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .main form {
   min-width: 500px;
+}
+@media only screen and (max-width: 375px) {
+  .main form {
+    min-width: 100%;
+  }
 }
 .main form .field img {
   max-width: 117px;
@@ -302,7 +407,7 @@ a {
   height: 500px;
   overflow-y: auto;
   /* Trigger vertical scroll    */
-  overflow-x: hidden;
+  overflow-x: scroll;
 }
 .divTabla table tbody tr td img {
   max-width: 138px;

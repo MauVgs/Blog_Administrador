@@ -4,7 +4,8 @@
 
 
 .divBack{
-    margin-right: 2%;
+    margin-left: 20%;
+    text-align: right;
 }
 .navBarHome{
     @include navBarHome;
@@ -46,23 +47,76 @@ a{
 .select, select{
     width: 100%;
 }
+#index{
+    margin-top: 0;
+}
 .divInfo{
     margin-top: 100px;
-    width: 100%;
-    display: flex;
+    min-width: 90%;
+
+    @include mtablet{
+        #img{
+            display: none;
+        }
+    }
+    @include iPhone{
+        #titulo, #author, #fecha, #nombre, #email, #apellidos{
+            display: none;
+        }
+
+    }
+    @include mdesktop{
+        #introduccion, #contenido{
+            display: none;
+        }
+    }
+    @include tablet{
+          display: block;
+          margin-top: 0;
+          .divTabla table tbody tr td img {
+            max-width: 50px;
+        }
+          table{
+            min-width: 100%;
+            margin-right: 20px;
+              #introduccion, #contenido{
+                  display: none;
+              }
+          }
+      }
 }
 .divTabla{
     min-width: 70%;
     height: auto;
     padding: 10px;
+    
 }
 .botones{
-    width: 30%;
-    height: auto;
-    padding: 70px 10px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     z-index: 1;
+    margin-top: 20px;
+    
+    button{
+        width: 200px;
+        padding: 10px;
+        border-radius: 50px;
+        cursor: pointer;
+        background: rgb(72, 149, 213);
+        border: 0;
+        box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+        font-family: montserrat, sans-serif;
+        color: #fff;
+        font-size: 16px;
+        z-index: 100;
+    }
+    @include tablet{
+        display: flex;
+        justify-content: space-around;
+        z-index: 1;
+    }
 }
 .colorIconDel{
     color: rgb(254, 47, 47);
@@ -79,7 +133,10 @@ a{
     margin-right: 80px;
 }
 .pt{
-    padding-top: 100px
+    padding-top: 100px;
+    @include tablet{
+        padding-top: 80px;
+    }
 }
 .commentDetArtic{
     width: 100%;
@@ -102,7 +159,6 @@ a{
     margin-top: 70px;
 }
 .btnAdmin{
-    margin-top: 30%;
     width: 200px;
     padding: 10px;
     border-radius: 50px;
@@ -129,8 +185,14 @@ a{
     padding-left: 10px;
 }
 .main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     form{
         min-width: 500px;
+        @include iPhone{
+            min-width: 100%;
+        }
         .field{
             img{
                 max-width: 117px;
@@ -154,7 +216,7 @@ a{
         tbody{
             height: 500px;
             overflow-y: auto;    /* Trigger vertical scroll    */
-            overflow-x: hidden;
+            overflow-x: scroll;
             tr{
                 td{
                     img{

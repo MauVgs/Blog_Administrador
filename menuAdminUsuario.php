@@ -67,9 +67,9 @@
                         <tr>
                             <th>Id</th>
                             <th>Usuario</th>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Email</th>
+                            <th id="nombre">Nombre</th>
+                            <th id="apellidos">Apellidos</th>
+                            <th id="email">Email</th>
                             <th>Ban</th>
                         </tr>
                     </thead>
@@ -78,9 +78,9 @@
                             <tr>
                                 <td><?php echo $item[0]; ?></td>
                                 <td><?php echo $item[1]; ?></td>
-                                <td><?php echo $item[2]; ?></td>
-                                <td><?php echo $item[3]; ?></td>
-                                <td><?php echo $item[4]; ?></td>
+                                <td id="nombre"><?php echo $item[2]; ?></td>
+                                <td id="apellidos"><?php echo $item[3]; ?></td>
+                                <td id="email"><?php echo $item[4]; ?></td>
                                 <td><a href="/bannearUsuario.php?id=<?php echo $item[0]; ?>"><i class="material-icons iconDel">new_releases</i></a></td>
                             </tr>
                         <?php endforeach; ?>

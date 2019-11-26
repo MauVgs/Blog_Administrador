@@ -84,9 +84,8 @@
                 </table>
             </div>
             <div class="botones">
-                <div>
+
                     <a href="/agregarCategoria.php"><button class="btnAdmin">Nueva</button></a>
-                </div>
             </div>
         </div>
             

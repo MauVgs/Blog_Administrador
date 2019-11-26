@@ -10,6 +10,11 @@
     box-shadow: 5px 6px 15px 0 rgba(0,0,0,0.14);
     position: fixed;
     z-index: 1;
+    @include iPhone{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }
 @mixin navBar {
     background: #fff;
@@ -26,8 +31,9 @@
 @mixin back {
     text-decoration: none;
     font-size: 20px;
-    color: $bgn;
+    color: $btnColor;
     cursor: pointer;
+
 }
 
 @mixin botonCategoria {
@@ -159,4 +165,42 @@
     min-height: 100vh;
     background: #fff;
     padding: 10px;
+    box-shadow: 5px 6px 15px 0 rgba(0, 0, 0, 0.14);
+    @include tablet{
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+}
+
+
+/*      Responsive Web Design      */
+
+@mixin iPhone {
+    @media only screen and (max-width: 375px){
+        @content;    
+    }
+}
+
+@mixin phone {
+    @media only screen and (max-width: 480px){
+        @content;    
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: 768px) {
+        @content;
+    }
+}
+@mixin mtablet {
+    @media only screen and (max-width: 680px) {
+        @content;
+    }
+}
+
+@mixin mdesktop {
+    @media only screen and (max-width: 1400px) {
+        @content;
+    }
 }

@@ -56,7 +56,7 @@
                  nuevamente.  O <a href="index.php">Crea una cuenta</a> para poder ser parte de nuestro equipo.
             </div>
         <?php endif ?>
-        <div class="formulario">
+        <div class="formulario" id="index">
             <form action="" method="POST">
                 <div class="field has-text-centered">
                     <img src="/public/img/logo.png" alt="">
